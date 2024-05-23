@@ -65,10 +65,18 @@ class _MenuScreenState extends State<MenuScreen> {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            height: 100,
-                            width: 100,
-                            child: Image.asset('assets/images/arrow.png'),
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: appBarColor),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            height: 80,
+                            width: 80,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15),
+
+                              child: Image.asset('assets/images/doctor.jpg'),
+                            ),
                           ),
                           const Gap(10),
                           const Text('Username',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 20,color: Colors.white),),

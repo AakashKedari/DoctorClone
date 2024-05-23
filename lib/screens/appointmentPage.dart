@@ -1,7 +1,6 @@
 import 'package:doctor_clone/customWidgets/datePickerWidget.dart';
 import 'package:doctor_clone/customWidgets/timePickerWidget.dart';
 import 'package:doctor_clone/screens/home.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:page_transition/page_transition.dart';
@@ -48,9 +47,9 @@ class _AppointmentPageState extends State<AppointmentPage> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            title: Row(
+            title: const Row(
               mainAxisSize: MainAxisSize.min,
-              children: const [
+              children: [
                 Icon(Icons.thumb_up, color: Colors.green, size: 24),
                 SizedBox(width: 10),
                 Text('Success'),

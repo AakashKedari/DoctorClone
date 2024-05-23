@@ -1,4 +1,4 @@
 import 'dart:ui';
 
-const Color appBarColor = Color(0xff072ac8);
+const Color appBarColor = Color(0xffC50201);
 

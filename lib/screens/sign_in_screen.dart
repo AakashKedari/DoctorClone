@@ -3,7 +3,6 @@ import 'package:doctor_clone/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
-
 import '../const.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -55,6 +54,29 @@ class _SignInScreenState extends State<SignInScreen> {
                         border: InputBorder.none
                       ),
                     ),
+                    Gap(10),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {  },
+                        child: Text('Forgot Password?',style: TextStyle(color: appBarColor),),
+                      ),
+                    ),
+                    Gap(10),
+                    Row(children: [
+                      Checkbox(
+                        value: true, // or false
+                        onChanged: (bool? newValue) {
+// Handle change in value
+                        },
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(2), // Adjust for square appearance
+                        ),
+                        checkColor: Colors.white, // color of the tick Mark
+                        activeColor: appBarColor, // color of the checkbox when it is active
+                      ),
+                      Text('Remember me?')
+                    ],),
                     const Gap(10),
                     SizedBox(
                         height: 40,
@@ -63,13 +85,15 @@ class _SignInScreenState extends State<SignInScreen> {
                           onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => HomePage())),
                           color: appBarColor,
                           shape: const StadiumBorder(),
-                          child:  const Text('Log In',style: TextStyle(color: Colors.white),),
+                          child:  const Text('Sign In',style: TextStyle(color: Colors.white),),
                         )),
                     const Gap(10),
-                    const Text('OR',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        )),
+                    Center(
+                      child: const Text('OR',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          )),
+                    ),
 
                     const Gap(10),
                     Row(

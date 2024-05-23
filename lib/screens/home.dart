@@ -8,6 +8,7 @@ import 'package:doctor_clone/screens/profileTab.dart';
 import 'package:doctor_clone/screens/searchTab.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -18,12 +19,9 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-
-
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
 
   int _selectedIndex = 0;
-
 
   static const List<Widget> _widgetOptions = <Widget>[
     HomeTab(),
@@ -38,6 +36,9 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  late final _tabController = TabController(length: 3, vsync: this);
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,36 +52,70 @@ class _HomePageState extends State<HomePage> {
             Navigator.push(context, PageTransition(child: const MenuScreen(), type: PageTransitionType.leftToRight,duration: const Duration(milliseconds: 500)));
         },
         ),
-        title:  Text( _selectedIndex == 0 ? 'Home' : _selectedIndex == 1 ? 'Doctors' : _selectedIndex == 2 ? 'Search' : 'Profile' ,style: const TextStyle(color: Colors.white),),
+        title:  Text( _selectedIndex == 0 ? 'Home' : _selectedIndex == 1 ? 'Doctors' : _selectedIndex == 2 ? 'Search' : 'Profile' ,style: const TextStyle(color: Colors.white,fontSize: 20),),
         centerTitle: true,
         backgroundColor: appBarColor,
         surfaceTintColor: appBarColor,
+
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
+        items:  <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.home),
+            icon: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: _selectedIndex == 0 ?  Colors.red.shade200 : Colors.transparent
+              ),
+              child: const Icon(CupertinoIcons.home),
+            ),
             label: 'Home',
-          ),
+          )
+    ,
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.heart),
+            icon: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: _selectedIndex == 1 ?  Colors.red.shade200 : Colors.transparent
+              ),
+              child: const Icon(FontAwesomeIcons.userDoctor),
+            ),
             label: 'Doctor',
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.search),
+            icon: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: _selectedIndex == 2 ?  Colors.red.shade200 : Colors.transparent
+              ),
+              child: const Icon(CupertinoIcons.search),
+            ),
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.person),
+            icon: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: _selectedIndex == 3 ?  Colors.red.shade200 : Colors.transparent
+              ),
+              child: const Icon(CupertinoIcons.person),
+            ),
             label: 'Profile',
           ),
         ],
         showSelectedLabels: false,
         showUnselectedLabels: false,
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue[800],
+        selectedItemColor: Colors.redAccent.shade200,
         onTap: _onItemTapped,
         unselectedItemColor: Colors.black38,
       ),

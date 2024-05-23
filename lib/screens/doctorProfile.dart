@@ -1,4 +1,5 @@
 import 'package:doctor_clone/screens/appointmentPage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -86,14 +87,20 @@ class _DoctorProfileState extends State<DoctorProfile> {
                     },
                   ),
                   const Gap(10),
-                  MaterialButton(
-                    color: appBarColor,
-                    shape: const StadiumBorder(),
-                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AppointmentPage())),
-                    child: const Text(
-                      "Book an Appointment",
-                      style: TextStyle(color: Colors.white),
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      MaterialButton(
+                        color: appBarColor,
+                        shape: const StadiumBorder(),
+                        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AppointmentPage())),
+                        child: const Text(
+                          "Book an Appointment",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      IconButton(onPressed: (){}, icon: const Icon(FontAwesomeIcons.video,color: appBarColor,))
+                    ],
                   ),
                   const Align(
                     alignment: Alignment.centerLeft,

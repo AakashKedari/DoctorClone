@@ -75,16 +75,21 @@ class _SearchTabState extends State<SearchTab> {
               top: 20,
               left: 20,
               right: 20,
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15)),
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: const TextField(
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(CupertinoIcons.search),
-                      border: InputBorder.none,
-                      hintText: 'Search'),
+              child: Card(
+                elevation: 5,
+                child: Container(
+
+                  decoration: BoxDecoration(
+                    
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15)),
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: const TextField(
+                    decoration: InputDecoration(
+                        prefixIcon: Icon(CupertinoIcons.search),
+                        border: InputBorder.none,
+                        hintText: 'Search'),
+                  ),
                 ),
               )),
         ],

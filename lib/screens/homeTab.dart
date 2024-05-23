@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import '../const.dart';
 
@@ -22,8 +24,7 @@ class _HomeTabState extends State<HomeTab> {
             decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(40),
-                  topRight: Radius.circular(40)),
+                  topLeft: Radius.circular(40), topRight: Radius.circular(40)),
             ),
             child: SingleChildScrollView(
               child: Padding(
@@ -31,7 +32,7 @@ class _HomeTabState extends State<HomeTab> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Gap(10),
+                    const Gap(20),
                     const Text(
                       'Story From Doctors',
                       style:
@@ -39,16 +40,40 @@ class _HomeTabState extends State<HomeTab> {
                     ),
                     const Gap(10),
                     SizedBox(
-                      height: 80,
+                      height: 130,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: 4,
                         itemBuilder: (context, index) {
-                          return SizedBox(
-                            width: MediaQuery.of(context).size.width / 4,
-                            child: const CircleAvatar(
-                              radius: 20,
-                            ),
+                          return Column(
+                            children: [
+                              SizedBox(
+                                  width: MediaQuery.of(context).size.width / 4,
+                                  height: 70,
+                                  child: Container(
+                                    width: 60,
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color:
+                                            // Color(0xffC50201),
+                                            appBarColor, // Border color
+                                        width: 3.0, // Border width
+                                      ),
+                                    ),
+                                    child: const CircleAvatar(
+                                      radius: 35.0,
+                                      backgroundImage: AssetImage(
+                                          'assets/images/doctor.jpg'), // Replace with your image URL
+                                    ),
+                                  )),
+                              const Gap(5),
+                              const Text(
+                                'Doctor Name',
+                                style: TextStyle(fontSize: 10),
+                              )
+                            ],
                           );
                         },
                       ),
@@ -65,43 +90,96 @@ class _HomeTabState extends State<HomeTab> {
                         shrinkWrap: true,
                         itemCount: 4,
                         itemBuilder: (context, index) {
-                          return Card(
-                            child: Column(
-                              children: [
-                                ListTile(
-                                  title: const Text('Doctor Name'),
-                                  subtitle: const Text('Gynecologist'),
-                                  leading: Image.asset(
-                                      height: 50,
-                                      'assets/images/blank_doctor.png'),
-                                  trailing: const Column(
-                                    children: [
-                                      Gap(5),
-                                      Icon(
-                                        Icons.star,
-                                        color: Colors.amber,
-                                      ),
-                                      Text('4.0')
-                                    ],
+                          return Stack(
+                            children: [
+                              Row(mainAxisSize: MainAxisSize.min, children: [
+                                Gap(30),
+                                Flexible(
+                                  child: Card(
+                                    semanticContainer: false,
+                                    elevation: 2,
+                                    color: Colors.white,
+                                    surfaceTintColor: Colors.white,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const ListTile(
+                                          title: Text('Doctor Name'),
+                                          subtitle: Text('Specialization'),
+                                          contentPadding: EdgeInsets.only(
+                                              left: 50, right: 10),
+                                          trailing: Column(
+                                            children: [
+                                              Gap(5),
+                                              Icon(
+                                                Icons.star,
+                                                color: Colors.amber,
+                                              ),
+                                              Text('4.0')
+                                            ],
+                                          ),
+                                        ),
+                                        // Flexible(
+                                        //   fit: FlexFit.loose,
+                                        //   child: ListTile(
+                                        //     contentPadding: EdgeInsets.only(left: 5,right: 10),
+                                        //     title: const Text('Doctor Name'),
+                                        //     subtitle: const Text('Gynecologist'),
+                                        //     trailing: const Column(
+                                        //       children: [
+                                        //         Gap(5),
+                                        //         Icon(
+                                        //           Icons.star,
+                                        //           color: Colors.amber,
+                                        //         ),
+                                        //         Text('4.0')
+                                        //       ],
+                                        //     ),
+                                        //   ),
+                                        // ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 20),
+                                          child: Row(children: [
+                                            Gap(20),
+                                            const Text("\$300"),
+                                            Expanded(
+                                              child: SizedBox(),
+                                            ),
+                                            Align(
+                                              alignment: Alignment.centerRight,
+                                              child: ElevatedButton(
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        appBarColor,
+                                                  ),
+                                                  onPressed: () {},
+                                                  child: const Text('Book',
+                                                      style: TextStyle(
+                                                          color:
+                                                              Colors.white))),
+                                            )
+                                          ]),
+                                        ),
+                                        const Gap(10)
+                                      ],
+                                    ),
                                   ),
                                 ),
-                                Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      const Text("\$300"),
-                                      ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: appBarColor,
-                                          ),
-                                          onPressed: () {},
-                                          child: const Text('Book Now',
-                                              style: TextStyle(
-                                                  color: Colors.white)))
-                                    ]),
-                                const Gap(10)
-                              ],
-                            ),
+                              ]),
+                              Positioned(
+                                  top: 20,
+                                  child: ClipRRect(
+                                    
+                                    child: Image.asset(
+                                      'assets/images/doctor.jpg',
+                                      width: 70,
+                                      height: 70,
+                                    ),
+                                    borderRadius: BorderRadius.circular(15),
+                                  )),
+                            ],
                           );
                         })
                   ],
