@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:doctor_clone/screens/appointmentPage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
+import 'package:page_transition/page_transition.dart';
 import '../const.dart';
 
 class HomeTab extends StatefulWidget {
@@ -40,7 +40,7 @@ class _HomeTabState extends State<HomeTab> {
                     ),
                     const Gap(10),
                     SizedBox(
-                      height: 130,
+                      height: 120,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: 4,
@@ -78,7 +78,7 @@ class _HomeTabState extends State<HomeTab> {
                         },
                       ),
                     ),
-                    const Gap(10),
+                    Divider(),
                     const Text(
                       'Nearby Doctors',
                       style:
@@ -93,7 +93,7 @@ class _HomeTabState extends State<HomeTab> {
                           return Stack(
                             children: [
                               Row(mainAxisSize: MainAxisSize.min, children: [
-                                Gap(30),
+                                const Gap(30),
                                 Flexible(
                                   child: Card(
                                     semanticContainer: false,
@@ -154,7 +154,16 @@ class _HomeTabState extends State<HomeTab> {
                                                     backgroundColor:
                                                         appBarColor,
                                                   ),
-                                                  onPressed: () {},
+                                                  onPressed: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        PageTransition(
+                                                            child:
+                                                                AppointmentPage(),
+                                                            type:
+                                                                PageTransitionType
+                                                                    .fade));
+                                                  },
                                                   child: const Text('Book',
                                                       style: TextStyle(
                                                           color:
@@ -171,13 +180,12 @@ class _HomeTabState extends State<HomeTab> {
                               Positioned(
                                   top: 20,
                                   child: ClipRRect(
-                                    
+                                    borderRadius: BorderRadius.circular(15),
                                     child: Image.asset(
                                       'assets/images/doctor.jpg',
                                       width: 70,
                                       height: 70,
                                     ),
-                                    borderRadius: BorderRadius.circular(15),
                                   )),
                             ],
                           );

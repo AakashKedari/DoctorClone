@@ -1,3 +1,4 @@
+import 'package:doctor_clone/const.dart';
 import 'package:flutter/material.dart';
 
 class TimeSlotSelector extends StatefulWidget {
@@ -15,8 +16,8 @@ class _TimeSlotSelectorState extends State<TimeSlotSelector> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         mainAxisSpacing: 10,
         crossAxisCount: 3, // Creates a 3x3 grid
         childAspectRatio: 3, // Adjusts the aspect ratio of the grid items
@@ -52,14 +53,14 @@ class TimeSlotChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onSelect,
-      child: Container(
-
-        child: Chip(
-          label: Text(timeSlot),
-          backgroundColor: isSelected ? Colors.blue : Colors.grey[200],
-          labelStyle: TextStyle(
-            color: isSelected ? Colors.white : Colors.black,
-          ),
+      child: Chip(
+        side: BorderSide.none,
+        surfaceTintColor: Colors.white,
+        shape: const StadiumBorder(),
+        label: Text(timeSlot),
+        backgroundColor: isSelected ? appBarColor : Colors.white,
+        labelStyle: TextStyle(
+          color: isSelected ? Colors.white : Colors.black,
         ),
       ),
     );

@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "794575466397",
+    "project_id": "doctorclone-7e8ca",
+    "storage_bucket": "doctorclone-7e8ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:794575466397:android:fc7d60f017d67f265b8974",
+        "android_client_info": {
+          "package_name": "com.example.doctor_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "794575466397-9j8ehl1or8pl9hapm2patpblvei2c926.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.doctor_clone",
+            "certificate_hash": "34186760713644b7631af521cb88d39e51dc6c46"
+          }
+        },
+        {
+          "client_id": "794575466397-thg82ukd1gkosu1k9k0on5e00ejeun2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByzhUUwRX6j3o3meR2rT3LTZcrtEky2Tk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "794575466397-thg82ukd1gkosu1k9k0on5e00ejeun2v.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "794575466397-sf0vho6ubk2a707kl9a26i5cvhf744b8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.doctorClone"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,7 @@
+import 'package:doctor_clone/services/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import '../const.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -23,9 +26,9 @@ class _SettingsPageState extends State<SettingsPage> {
               Navigator.pop(context);
             },
           ),
-          title: Text(
+          title: const Text(
             'Settings',
-            style: const TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
           backgroundColor: appBarColor,
@@ -41,33 +44,45 @@ class _SettingsPageState extends State<SettingsPage> {
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(40), topRight: Radius.circular(40)),
             ),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+            child:  Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: [
-                  Flexible(
+                  const Flexible(
                     flex: 2,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Profile',style: TextStyle(fontWeight: FontWeight.bold)),
+                        Gap(10),
+                    Padding(
+                      padding: EdgeInsets.only(left: 8.0),
+                      child: Text('Profile',style: TextStyle(fontWeight: FontWeight.bold))),
                         ListTile(
                           leading: Icon(Icons.person),
                           title: Text('Edit Profile'),
+                          trailing: Icon(Icons.arrow_forward_ios_sharp),
                         ), ListTile(
                           leading: Icon(Icons.email_rounded),
                           title: Text('My Email'),
+                          trailing: Icon(Icons.arrow_forward_ios_sharp),
+
                         ), ListTile(
                           leading: Icon(Icons.lock_clock),
                           title: Text('Reset Password'),
+                          trailing: Icon(Icons.arrow_forward_ios_sharp),
+
                         ), ListTile(
                           leading: Icon(Icons.location_history),
                           title: Text('My Location'),
+                          trailing: Icon(Icons.arrow_forward_ios_sharp),
+
                         ),
                         ListTile(
                           leading: Icon(Icons.notifications_active),
                           title: Text('Notifications'),
+                          trailing: Icon(Icons.arrow_forward_ios_sharp),
+
                         ),
                     
                       ],
@@ -80,17 +95,21 @@ class _SettingsPageState extends State<SettingsPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
 
                       children: [
-                        Text('Support',style: TextStyle(fontWeight: FontWeight.bold),),
-                        ListTile(
+                        const Padding(
+                          padding: EdgeInsets.only(left: 8.0),
+                          child: Text('Support',style: TextStyle(fontWeight: FontWeight.bold),),
+                        ),
+                        const ListTile(
                           leading: Icon(Icons.shield_outlined),
                           title: Text('Terms & Conditions'),
+
                         ), ListTile(
-                          leading: Icon(Icons.logout),
-                          title: Text('Log Out',style: TextStyle(color: Colors.red),),
+                          onTap: () => FirebaseAuth.instance.signOut(),
+                          leading: const Icon(Icons.logout),
+                          title: const Text('Log Out',style: TextStyle(color: Colors.red),),
                         ),
                       ],
                     ),
-
                   )
                 ],
               ),

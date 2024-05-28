@@ -13,7 +13,7 @@ class SearchTab extends StatefulWidget {
   State<SearchTab> createState() => _SearchTabState();
 }
 
-class _SearchTabState extends State<SearchTab> {
+class _SearchTabState extends State<SearchTab> with AutomaticKeepAliveClientMixin  {
 
   final Completer<GoogleMapController> _googlemapController = Completer();
   double? mainLatitude = 18.5538;
@@ -48,6 +48,7 @@ class _SearchTabState extends State<SearchTab> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: Stack(
         children: [
@@ -61,15 +62,18 @@ class _SearchTabState extends State<SearchTab> {
                     topLeft: Radius.circular(40),
                     topRight: Radius.circular(40)),
               ),
-              child: GoogleMap(
-                myLocationEnabled: false,
-                initialCameraPosition: CameraPosition(
-                  target: LatLng(mainLatitude!, mainLongitude!),
-                  zoom: 14,
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(40),topRight: Radius.circular(40)),
+                child: GoogleMap(
+                  myLocationEnabled: true,
+                  initialCameraPosition: CameraPosition(
+                    target: LatLng(mainLatitude!, mainLongitude!),
+                    zoom: 14,
+                  ),
+                  onMapCreated: (GoogleMapController controller) {
+                    _googlemapController.complete(controller);
+                  },
                 ),
-                onMapCreated: (GoogleMapController controller) {
-                  _googlemapController.complete(controller);
-                },
               )),
           Positioned(
               top: 20,
@@ -80,7 +84,7 @@ class _SearchTabState extends State<SearchTab> {
                 child: Container(
 
                   decoration: BoxDecoration(
-                    
+
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15)),
                   width: MediaQuery.of(context).size.width * 0.8,
@@ -96,4 +100,8 @@ class _SearchTabState extends State<SearchTab> {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

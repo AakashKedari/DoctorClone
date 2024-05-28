@@ -60,8 +60,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
                       Gap(10)
                     ],
                   ),
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 50,
+                    child: Image.asset('assets/images/apple_logo.png'),
                   ),
                   const Text(
                     'Doctor name',
@@ -102,6 +103,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                       IconButton(onPressed: (){}, icon: const Icon(FontAwesomeIcons.video,color: appBarColor,))
                     ],
                   ),
+                  Gap(10),
                   const Align(
                     alignment: Alignment.centerLeft,
                     child: Text(

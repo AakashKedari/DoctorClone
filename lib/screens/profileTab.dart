@@ -1,10 +1,10 @@
-import 'dart:ui';
+import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
+import 'package:doctor_clone/screens/editProfile.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
-
+import 'package:page_transition/page_transition.dart';
 import '../const.dart';
 
 class ProfileTab extends StatefulWidget {
@@ -14,12 +14,12 @@ class ProfileTab extends StatefulWidget {
   State<ProfileTab> createState() => _ProfileTabState();
 }
 
-class _ProfileTabState extends State<ProfileTab>  {
+class _ProfileTabState extends State<ProfileTab>
+    with AutomaticKeepAliveClientMixin {
   String selectedText = 'My Doctors';
 
   Future<void> loadImage(String imagePath, BuildContext context) async {
     try {
-// Load asset image example
       await precacheImage(AssetImage(imagePath), context);
       print('Image loaded and cached successfully!');
     } catch (e) {
@@ -29,7 +29,7 @@ class _ProfileTabState extends State<ProfileTab>  {
 
   @override
   void initState() {
-    // TODO: implement initState
+    log('Inint Called');
     super.initState();
     Future.delayed(Duration.zero, () {
       loadImage('assets/images/landscape-doctor.jpg', context);
@@ -38,6 +38,7 @@ class _ProfileTabState extends State<ProfileTab>  {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
         body: Stack(children: [
       Container(
@@ -68,26 +69,26 @@ class _ProfileTabState extends State<ProfileTab>  {
                       width: 80,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(15),
-                        child: Image.asset('assets/images/doctor.jpg'),
+                        child: Image.network(FirebaseAuth.instance.currentUser?.photoURL ?? '',fit: BoxFit.cover,),
                       ),
                     ),
-                    const Expanded(
+                     Expanded(
                         child: Column(
                       children: [
                         Center(
                             child: Text(
-                          'Username',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
+                          FirebaseAuth.instance.currentUser?.email ?? 'Username',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 12),
                         )),
-                        Text('@username')
+                        Text(FirebaseAuth.instance.currentUser?.displayName ?? '@username')
                       ],
                     ))
                   ],
                 ),
                 const Gap(20),
                 InkWell(
-                  onTap: () {},
+                  onTap: () => Navigator.push(context, PageTransition(child: EditProfile(), type: PageTransitionType.fade)),
                   child: Container(
                     width: double.infinity,
                     height: 40,
@@ -104,65 +105,137 @@ class _ProfileTabState extends State<ProfileTab>  {
                     )),
                   ),
                 ),
-                const Gap(20),
+                const Gap(10),
+                const Divider(),
+                const Gap(10),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const Column(
-                      children: [Text('Appointments'), Text('10')],
+                    InkWell(
+                      onTap: () => setState(() {
+                        selectedText = 'My Doctors';
+                        print(selectedText);
+                      }),
+                      child: Column(
+                        children: [
+                          Text(
+                            'My Doctors',
+                            style: TextStyle(
+                                fontWeight: selectedText == 'My Doctors'
+                                    ? FontWeight.bold
+                                    : FontWeight.normal),
+                          ),
+                          Text(
+                            '8',
+                            style: TextStyle(
+                                fontWeight: selectedText == 'My Doctors'
+                                    ? FontWeight.bold
+                                    : FontWeight.normal),
+                          )
+                        ],
+                      ),
                     ),
-                    Column(
-                      children: [
-                        Text(
-                          'My Doctors',
-                          style: TextStyle(
-                              fontWeight: selectedText == 'My Doctors'
-                                  ? FontWeight.bold
-                                  : FontWeight.normal),
-                        ),
-                        Text(
-                          '8',
-                          style: TextStyle(
-                              fontWeight: selectedText == 'My Doctors'
-                                  ? FontWeight.bold
-                                  : FontWeight.normal),
-                        )
-                      ],
+                    InkWell(
+                      onTap: () => setState(() {
+                        selectedText = 'My Appointments';
+                        print(selectedText);
+                      }),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'My Appointments',
+                            style: TextStyle(
+                                fontWeight: selectedText == 'My Appointments'
+                                    ? FontWeight.bold
+                                    : FontWeight.normal),
+                          ),
+                          Text(
+                            '10',
+                            style: TextStyle(
+                                fontWeight: selectedText == 'My Appointments'
+                                    ? FontWeight.bold
+                                    : FontWeight.normal),
+                          )
+                        ],
+                      ),
                     ),
+
                   ],
                 ),
                 const Gap(20),
-                GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: 8,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisSpacing: 10,
-                            crossAxisCount: 2,
-                            childAspectRatio: 0.9),
-                    itemBuilder: (context, index) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Center(
-                            child: ClipRRect(
-                              child: Image.asset(
-                                'assets/images/landscape-doctor.jpg',
-                                fit: BoxFit.contain,
+                if (selectedText == 'My Doctors')
+                  GridView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: 8,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisSpacing: 10,
+                              crossAxisCount: 2,
+                              childAspectRatio: 0.9),
+                      itemBuilder: (context, index) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.asset(
+                                  'assets/images/landscape-doctor.jpg',
+                                  fit: BoxFit.contain,
+                                ),
                               ),
-                              borderRadius: BorderRadius.circular(10),
                             ),
+                            const Text(
+                              'Doctor Name',
+                              textAlign: TextAlign.start,
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            const Text('Specialization')
+                          ],
+                        );
+                      }),
+                if (selectedText == 'My Appointments')
+                  ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          surfaceTintColor: Colors.white,
+                          color: Colors.white,
+                          child: Column(
+                            children: [
+                              ListTile(
+                                leading: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.asset(
+                                      'assets/images/doctor.jpg',
+                                      fit: BoxFit.cover,
+                                    )),
+                                title: const Text('Dr. Doctor Name'),
+                                subtitle: const Text('Address & Distance'),
+                                contentPadding: const EdgeInsets.only(left: 5),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text('Date / Time'),
+                                    TextButton(
+                                        onPressed: () {},
+                                        child: const Text('More...'))
+                                  ],
+                                ),
+                              )
+                            ],
                           ),
-                          const Text(
-                            'Doctor Name',
-                            textAlign: TextAlign.start,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          const Text('Specialization')
-                        ],
-                      );
-                    })
+                        );
+                      })
               ],
             ),
           ),
@@ -170,4 +243,8 @@ class _ProfileTabState extends State<ProfileTab>  {
       )
     ]));
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

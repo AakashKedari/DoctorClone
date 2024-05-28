@@ -21,6 +21,8 @@ class _DatePickerState extends State<DatePicker> {
           bool isSelected = selectedDate == date;
 
           return Card(
+            surfaceTintColor: Colors.white,
+            color: Colors.white,
             child: GestureDetector(
               onTap: () {
                 setState(() {

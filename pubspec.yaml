@@ -46,6 +46,13 @@ dependencies:
   card_swiper: ^3.0.1
   flutter_rating_bar: ^4.0.1
   intl: ^0.19.0
+  introduction_screen: ^3.1.14
+  shared_preferences: ^2.2.3
+  dotted_border: ^2.1.0
+  firebase_core: ^2.31.1
+  firebase_auth: ^4.19.6
+  get: ^4.6.6
+  google_sign_in: ^6.2.1
 
 dev_dependencies:
   flutter_test:

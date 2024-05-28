@@ -1,4 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:doctor_clone/screens/article_details.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:page_transition/page_transition.dart';
@@ -71,7 +72,7 @@ class _ArticlesPageState extends State<ArticlesPage> {
                                     'assets/images/news_article.jpg',
                                     fit: BoxFit.fill,
                                   )),
-                              Positioned(
+                              const Positioned(
                                   left: 10,
                                   bottom: 20,
                                   child: Text(
@@ -79,7 +80,7 @@ class _ArticlesPageState extends State<ArticlesPage> {
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 20),
                                   )),
-                              Positioned(
+                              const Positioned(
                                   left: 10,
                                   bottom: 10,
                                   child: Text(
@@ -91,25 +92,28 @@ class _ArticlesPageState extends State<ArticlesPage> {
                           }),
                     ),
                   ),
-                  Gap(10),
+                  const Gap(10),
                   const Text(
                     'News Articles',
                     style:
                     TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                  ),Gap(10),
+                  ),const Gap(10),
                   ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: 5,
                       shrinkWrap: true,
                       itemBuilder: (context,index){
-                    return ListTile(
-                      title: Text('Article Title'),
-                      leading: SizedBox(
-                        height: 80,
-                        width: 80,
-                        child: Image.asset('assets/images/newsTile.jpg'),
+                    return InkWell(
+                      onTap: () => Navigator.push(context, PageTransition(child: ArticleDetails(), type: PageTransitionType.fade)),
+                      child: ListTile(
+                        title: const Text('Article Title'),
+                        leading: SizedBox(
+                          height: 80,
+                          width: 80,
+                          child: Image.asset('assets/images/newsTile.jpg'),
+                        ),
+                        subtitle: const Text('few minutes ago'),
                       ),
-                      subtitle: Text('few minutes ago'),
                     );
                   })
                 ],

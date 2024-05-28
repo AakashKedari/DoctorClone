@@ -1,4 +1,5 @@
 import 'package:doctor_clone/screens/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -58,15 +59,15 @@ class _EditProfileState extends State<EditProfile> {
                         borderRadius: const BorderRadius.all(Radius.circular(20)),
                         border: Border.all(color: Colors.black)
                       ),
-                      child:  Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Image.asset('assets/images/arrow.png',fit: BoxFit.cover,),
-                      ),
+                      child:  ClipRRect(
+                          borderRadius: const BorderRadius.all(Radius.circular(20)),
+
+                          child: Image.network(FirebaseAuth.instance.currentUser?.photoURL ?? '',fit: BoxFit.cover,),),
                     ),
                     const Gap(10),
-                    const Text('Username',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                     Text(FirebaseAuth.instance.currentUser?.displayName?? 'UserName',style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                     const Gap(10),
-                    const Text('@angelina',style: TextStyle(fontWeight: FontWeight.w200,fontSize: 15),),
+                     Text(FirebaseAuth.instance.currentUser?.email ?? "Email",style: const TextStyle(fontWeight: FontWeight.w200,fontSize: 15),),
 
                   ]
                 )),
@@ -77,18 +78,18 @@ class _EditProfileState extends State<EditProfile> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                         children: [
-                      const Row(
+                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Username',style: TextStyle(fontWeight: FontWeight.bold),),
-                          Text('Angelina Williams')
+                          const Text('Username',style: TextStyle(fontWeight: FontWeight.bold),),
+                          Text(FirebaseAuth.instance.currentUser?.displayName?? 'UserName')
                         ],
                       ),
-                      const Row(
+                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Your Email',style: TextStyle(fontWeight: FontWeight.bold)),
-                          Text('angelina@gmail.com')
+                          const Text('Your Email',style: TextStyle(fontWeight: FontWeight.bold)),
+                          Text(FirebaseAuth.instance.currentUser?.email ?? "Email")
                         ],
                       ),
                       const Row(
@@ -102,7 +103,10 @@ class _EditProfileState extends State<EditProfile> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text('Notifications',style: TextStyle(fontWeight: FontWeight.bold)),
-                          Switch(value: true, onChanged: (value){})
+                          Switch(
+                              value: true, onChanged: (value){},
+                              activeColor: Colors.red.shade300,
+                          )
                         ],
                       ),
                                         ],
