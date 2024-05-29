@@ -1,9 +1,11 @@
 import 'dart:io';
+import 'package:doctor_clone/screens/dashboard.dart';
 import 'package:doctor_clone/screens/onBoardingScreen.dart';
 import 'package:doctor_clone/screens/sign_in_screen.dart';
 import 'package:doctor_clone/screens/splashScreen.dart';
 import 'package:doctor_clone/services/imageCache.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -36,8 +38,16 @@ class MyApp extends StatelessWidget {
 
   @override
    Widget build(BuildContext context)  {
-
-    return GetMaterialApp(
+    return kIsWeb ?   GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: DashboardScreen(),
+      theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+          textTheme: GoogleFonts.radioCanadaTextTheme()
+      ),
+    ) :
+      GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -48,3 +58,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
