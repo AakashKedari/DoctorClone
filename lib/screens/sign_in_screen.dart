@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:doctor_clone/screens/home.dart';
 import 'package:doctor_clone/screens/sign_up_screen.dart';
+import 'package:doctor_clone/screens/userProfile.dart';
 import 'package:doctor_clone/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -205,7 +206,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             onPressed: () => Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (_) => const SignUpScreen())),
+                                    builder: (_) => const Userprofile())),
                             child: const Text(
                               'Sign up',
                               style: TextStyle(color: appBarColor),
