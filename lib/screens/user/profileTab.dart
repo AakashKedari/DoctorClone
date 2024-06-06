@@ -1,11 +1,11 @@
 import 'dart:developer';
 
-import 'package:doctor_clone/screens/editProfile.dart';
+import 'package:doctor_clone/screens/user/editProfile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:page_transition/page_transition.dart';
-import '../const.dart';
+import '../../const.dart';
 
 class ProfileTab extends StatefulWidget {
   const ProfileTab({super.key});

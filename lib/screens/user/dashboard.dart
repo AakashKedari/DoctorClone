@@ -61,6 +61,7 @@
 //   }
 // }
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctor_clone/const.dart';
 import 'package:flutter/material.dart';
 
@@ -72,6 +73,49 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _fetchDoctorsCount();
+    _fetchUsersCount();
+  }
+
+  int _doctorsCount = 0;
+  int _usersCount = 0 ;
+
+  Future<void> _fetchDoctorsCount() async {
+    try {
+      QuerySnapshot snapshot = await FirebaseFirestore.instance.collection('doctors').get();
+      setState(() {
+        _doctorsCount = snapshot.docs.length;
+
+      });
+    } catch (e) {
+      setState(() {
+
+      });
+      print('Failed to get document count: $e');
+    }
+
+   }
+
+  Future<void> _fetchUsersCount() async {
+    try {
+      QuerySnapshot snapshot = await FirebaseFirestore.instance.collection('users').get();
+      setState(() {
+        _usersCount = snapshot.docs.length;
+
+      });
+    } catch (e) {
+      setState(() {
+
+      });
+      print('Failed to get document count: $e');
+    }
+  }
+
   //setting the expansion function for the navigation rail
   bool isExpanded = false;
   @override
@@ -142,17 +186,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       height: 20.0,
                     ),
                     //Now let's start with the dashboard main rapports
-                    const Row(
+                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Flexible(
                           child: Card(
                             child: Padding(
-                              padding: EdgeInsets.all(18.0),
+                              padding: const EdgeInsets.all(18.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
+                                  const Row(
                                     children: [
                                       Icon(
                                         Icons.medical_services,
@@ -170,12 +214,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       )
                                     ],
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 20.0,
                                   ),
                                   Text(
-                                    "Total : 10",
-                                    style: TextStyle(
+                                    "Total : $_doctorsCount",
+                                    style: const TextStyle(
                                       fontSize: 36,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -185,14 +229,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                           ),
                         ),
-                        Flexible(
+                         Flexible(
                           child: Card(
                             child: Padding(
-                              padding: EdgeInsets.all(18.0),
+                              padding: const EdgeInsets.all(18.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
+                                  const Row(
                                     children: [
                                       Icon(
                                         Icons.comment,
@@ -212,12 +256,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       )
                                     ],
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 20.0,
                                   ),
                                   Text(
-                                    "+32",
-                                    style: TextStyle(
+                                    "Total : ${_usersCount}",
+                                    style: const TextStyle(
                                       color: Colors.red,
                                       fontSize: 36,
                                       fontWeight: FontWeight.bold,
@@ -228,7 +272,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                           ),
                         ),
-                        Flexible(
+                        const Flexible(
                           child: Card(
                             child: Padding(
                               padding: EdgeInsets.all(18.0),
@@ -273,7 +317,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                           ),
                         ),
-                        Flexible(
+                        const Flexible(
                           child: Card(
                             child: Padding(
                               padding: EdgeInsets.all(18.0),
@@ -376,7 +420,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             Icons.arrow_back,
                             color: Colors.deepPurple.shade400,
                           ),
-                          label: Text(
+                          label: const Text(
                             "2024",
                             style: TextStyle(
                               color: appBarColor,

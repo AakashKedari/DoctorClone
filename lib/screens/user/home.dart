@@ -1,10 +1,10 @@
 import 'package:doctor_clone/const.dart';
-import 'package:doctor_clone/screens/articlesPage.dart';
-import 'package:doctor_clone/screens/doctorsTab.dart';
-import 'package:doctor_clone/screens/homeTab.dart';
-import 'package:doctor_clone/screens/menuScreen.dart';
-import 'package:doctor_clone/screens/profileTab.dart';
-import 'package:doctor_clone/screens/searchTab.dart';
+import 'package:doctor_clone/screens/user/articlesPage.dart';
+import 'package:doctor_clone/screens/user/doctorsTab.dart';
+import 'package:doctor_clone/screens/user/homeTab.dart';
+import 'package:doctor_clone/screens/user/menuScreen.dart';
+import 'package:doctor_clone/screens/user/profileTab.dart';
+import 'package:doctor_clone/screens/user/searchTab.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

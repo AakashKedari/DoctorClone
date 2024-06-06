@@ -1,14 +1,14 @@
 import 'package:doctor_clone/customWidgets/menuIcon.dart';
-import 'package:doctor_clone/screens/articlesPage.dart';
-import 'package:doctor_clone/screens/home.dart';
-import 'package:doctor_clone/screens/settings.dart';
+import 'package:doctor_clone/screens/user/articlesPage.dart';
+import 'package:doctor_clone/screens/user/home.dart';
+import 'package:doctor_clone/screens/user/settings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:page_transition/page_transition.dart';
-import '../const.dart';
+import '../../const.dart';
 import 'editProfile.dart';
 
 class MenuScreen extends StatefulWidget {

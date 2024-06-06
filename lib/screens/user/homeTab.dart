@@ -1,8 +1,8 @@
-import 'package:doctor_clone/screens/appointmentPage.dart';
+import 'package:doctor_clone/screens/user/appointmentPage.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:page_transition/page_transition.dart';
-import '../const.dart';
+import '../../const.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});

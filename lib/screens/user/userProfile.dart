@@ -1,8 +1,8 @@
 import 'package:doctor_clone/const.dart';
+import 'package:doctor_clone/screens/doctor/doctor_signup.dart';
 import 'package:doctor_clone/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
 
 class Userprofile extends StatelessWidget {
@@ -12,10 +12,13 @@ class Userprofile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          foregroundColor: Colors.white,
+          centerTitle: true,
           backgroundColor: appBarColor,
           title: const Text('Who are you??'),
         ),
-        body: Stack(children: [
+        body: Stack(
+            children: [
           Container(
             color: appBarColor,
           ),
@@ -38,18 +41,21 @@ class Userprofile extends StatelessWidget {
                           PageTransition(
                               child: const SignUpScreen(),
                               type: PageTransitionType.fade)),
-                      label: const Text("Patient"),
+                      label: const Text("A Patient"),
                       icon: const Icon(FontAwesomeIcons.person),
                     ),
                     ElevatedButton.icon(
-                      onPressed: () => PageTransition(
-                          child: const SignUpScreen(), type: PageTransitionType.fade),
-                      label: const Text("Doctor"),
+                      onPressed: () => Navigator.push(
+                          context,
+                          PageTransition(
+                              child: const DoctorSignup(),
+                              type: PageTransitionType.fade)),
+                      label: const Text("A Doctor"),
                       icon: const Icon(FontAwesomeIcons.userDoctor),
                     ),
                   ],
                 ),
-              ))
+              )),
         ]));
   }
 }

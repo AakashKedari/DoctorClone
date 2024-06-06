@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 
-import '../const.dart';
+import '../../const.dart';
 
 class ArticleDetails extends StatelessWidget {
   const ArticleDetails({super.key});

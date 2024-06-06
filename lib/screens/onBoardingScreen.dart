@@ -1,5 +1,6 @@
 import 'package:doctor_clone/const.dart';
-import 'package:doctor_clone/screens/home.dart';
+import 'package:doctor_clone/screens/user/home.dart';
+import 'package:doctor_clone/screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -123,7 +124,7 @@ class _OnBoardingState extends State<OnBoarding> {
                         await SharedPreferences.getInstance();
                     _prefs.setBool('onBoardShown', true);
                     Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (_) => const HomePage()));
+                        MaterialPageRoute(builder: (_) => const SignInScreen()));
                   },
                   showBackButton: false,
                   showSkipButton: true,
@@ -137,7 +138,7 @@ class _OnBoardingState extends State<OnBoarding> {
                         await SharedPreferences.getInstance();
                     _prefs.setBool('onBoardShown', true);
                     Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (_) => const HomePage()));
+                        MaterialPageRoute(builder: (_) => const SignInScreen()));
                   },
                   done: SizedBox(
                       width: MediaQuery.of(context).size.width * 0.5,

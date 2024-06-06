@@ -1,11 +1,11 @@
 import 'package:doctor_clone/customWidgets/datePickerWidget.dart';
 import 'package:doctor_clone/customWidgets/timePickerWidget.dart';
-import 'package:doctor_clone/screens/home.dart';
+import 'package:doctor_clone/screens/user/home.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:page_transition/page_transition.dart';
-import '../const.dart';
+import '../../const.dart';
 import 'dart:ui' as ui;
 
 class AppointmentPage extends StatefulWidget {

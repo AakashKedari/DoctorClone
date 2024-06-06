@@ -1,8 +1,10 @@
 import 'dart:developer';
 
-import 'package:doctor_clone/screens/home.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doctor_clone/screens/doctor/doctor_home.dart';
+import 'package:doctor_clone/screens/user/home.dart';
 import 'package:doctor_clone/screens/sign_up_screen.dart';
-import 'package:doctor_clone/screens/userProfile.dart';
+import 'package:doctor_clone/screens/user/userProfile.dart';
 import 'package:doctor_clone/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -104,12 +106,17 @@ class _SignInScreenState extends State<SignInScreen> {
                                     password: _passwordController.text,
                                     context: context);
 
-                            user != null
+                            DocumentSnapshot doc = await FirebaseFirestore.instance.collection('doctors').doc(user?.uid).get();
+
+                            (user != null && !doc.exists)
                                 ? Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (_) => const HomePage()))
-                                : null;
+                                : (user != null && doc.exists) ?  Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) =>  DoctorHomePage())) : null;
                           },
                           color: appBarColor,
                           shape: const StadiumBorder(),

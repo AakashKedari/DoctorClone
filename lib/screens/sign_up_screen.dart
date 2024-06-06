@@ -1,4 +1,5 @@
-import 'package:doctor_clone/screens/home.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doctor_clone/screens/user/home.dart';
 import 'package:doctor_clone/screens/sign_in_screen.dart';
 import 'package:doctor_clone/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -118,7 +119,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: MaterialButton(
                           onPressed: () async {
                            User? user = await FireAuth.registerUsingEmailPassword(name: _nameController.text, email: _emailController.text, password: _passwordController.text, context: context);
-                          user != null ? Get.to(HomePage()) : null;
+                         if( user != null) {
+                           FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+                             'name': _nameController.text,
+                             'email': _emailController.text,
+                           });
+                           Get.to(const HomePage());
+
+                         }
                           },
                           color: appBarColor,
                           shape: const StadiumBorder(),

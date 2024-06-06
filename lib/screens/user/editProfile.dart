@@ -1,9 +1,9 @@
-import 'package:doctor_clone/screens/home.dart';
+import 'package:doctor_clone/screens/user/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../const.dart';
+import '../../const.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});

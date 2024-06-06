@@ -1,10 +1,10 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:doctor_clone/screens/article_details.dart';
+import 'package:doctor_clone/screens/user/article_details.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../const.dart';
+import '../../const.dart';
 
 class ArticlesPage extends StatefulWidget {
   const ArticlesPage({super.key});

@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:doctor_clone/screens/dashboard.dart';
+import 'package:doctor_clone/screens/user/dashboard.dart';
 import 'package:doctor_clone/screens/onBoardingScreen.dart';
 import 'package:doctor_clone/screens/sign_in_screen.dart';
 import 'package:doctor_clone/screens/splashScreen.dart';
@@ -15,6 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 /// Flag to check if the user is already onBoarded
 bool? onBoarded;
+
 
 Future<void> main() async {
   CustomImageCache();

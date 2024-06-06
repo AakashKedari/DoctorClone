@@ -1,10 +1,10 @@
-import 'package:doctor_clone/screens/appointmentPage.dart';
+import 'package:doctor_clone/screens/user/appointmentPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
-import '../const.dart';
+import '../../const.dart';
 
 class DoctorProfile extends StatefulWidget {
   const DoctorProfile({super.key});
